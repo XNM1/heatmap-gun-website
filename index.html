@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="gun.js"></script>
+    <title>Main Page</title>
+    <script>
+        window.onload = function () {
+            gun = Gun(['https://awesome-app-1337.herokuapp.com/gun'])
+            clicks = gun.get('clicks')
+            document.body.addEventListener('mousedown', e => {
+                clicks.set({
+                    x: e.layerX,
+                    y: e.layerY,
+                    value: 1
+                })
+            })
+        }
+    </script>
+</head>
+<body>
+    <img src="https://i.pinimg.com/originals/db/2d/5a/db2d5a277988dfe4c7fe60eb4dc95c9b.jpg" alt="page" width="100%">
+</body>
+</html>
