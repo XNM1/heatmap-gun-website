@@ -12,8 +12,8 @@
             clicks = gun.get('clicks')
             document.body.addEventListener('mousedown', e => {
                 clicks.set({
-                    x: e.layerX,
-                    y: e.layerY,
+                    x: e.pageX,
+                    y: e.pageY,
                     value: 1
                 })
             })

@@ -16,12 +16,25 @@
             });
             gun = Gun(['https://awesome-app-1337.herokuapp.com/gun'])
             clicks = gun.get('clicks')
-            heatmap.setData({
-                max: 3,
-                data: []
-            })
 
-            clicks.map().on(click => heatmap.addData(click))
+            data = []
+            clicks.map().once((click) => data.push(click))
+
+            countClicks = localStorage.getItem('gun/').split('_').length - 2
+
+            function checkClicks() {
+                if (data.length === countClicks) {
+                    heatmap.setData({
+                        max: 3,
+                        data
+                    })
+                    clearInterval(interval)
+                    clicks.map(click => data.includes(click) ? undefined : click).on(click => heatmap.addData(click))
+                }
+            }
+
+            interval = setInterval(checkClicks, 10)
+
         }
     </script>
 </head>
